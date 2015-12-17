@@ -16,7 +16,7 @@ public final class DatabaseSchema {
     }
 
     /**
-     * Defines the columns for contact table
+     * Defines the columns for customer table
      */
     public static abstract class CustomerEntry implements BaseColumns {
         public static final String TABLE_NAME = "customer";
@@ -39,6 +39,9 @@ public final class DatabaseSchema {
         public static final String COLUMN_NAME_ZIPCODE = "zip_code";
         public static final String COLUMN_NAME_CITY = "city";
         public static final String COLUMN_NAME_COUNTRY = "country";
+        // X und Y Koordinaten für Google Maps
+        public static final String COLUMN_NAME_X_COORD = "xcoord";
+        public static final String COLUMN_NAME_Y_COORD = "ycoord";
     }
 
 
@@ -57,7 +60,7 @@ public final class DatabaseSchema {
 
     public static abstract class ProposalEntry implements BaseColumns {
 
-        public static final String TABLE_NAME = " proposal";
+        public static final String TABLE_NAME = "proposal";
         public static final String COLUMN_PROVIDER_FK = "provider_fk";
         public static final String COLUMN_ADDRESS_FK = "address_fk";
         public static final String COLUMN_NAME_TYPE_OF_ACCOMMONDATION = "type_of_accomondation";

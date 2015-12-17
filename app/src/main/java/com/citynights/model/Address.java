@@ -26,13 +26,17 @@ public class Address implements Parcelable {
      * @param zipCode zip code
      * @param city    city name
      * @param country country name
+     * @param xcoord  x coordinate
+     * @param ycoord  y coordinate
      */
-    public Address(String street, String number, String zipCode, String city, String country) {
+    public Address(String street, String number, String zipCode, String city, String country, String xcoord, String ycoord) {
         this.street = street;
         this.number = number;
         this.zipCode = zipCode;
         this.city = city;
         this.country = country;
+        this.xcoord = xcoord;
+        this.ycoord = ycoord;
     }
 
     private long id;
@@ -41,6 +45,8 @@ public class Address implements Parcelable {
     private String zipCode;
     private String city;
     private String country;
+    private String xcoord;
+    private String ycoord;
 
     public long getId() {
         return id;
@@ -86,9 +92,15 @@ public class Address implements Parcelable {
         return country;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
-    }
+    public void setCountry(String country) { this.country = country;   }
+
+    public String getXCoord() {   return xcoord;   }
+
+    public void setXCoord(String xcoord) {   this.xcoord = xcoord;   }
+
+    public String getYcoord() {   return ycoord;   }
+
+    public void setYCoord(String ycoord) {   this.ycoord = ycoord;   }
 
     @Override
     public String toString() {
@@ -99,6 +111,8 @@ public class Address implements Parcelable {
                 ", zipCode='" + zipCode + '\'' +
                 ", city='" + city + '\'' +
                 ", country='" + country + '\'' +
+                ", xcoord='" + xcoord + '\'' +
+                ", ycoord='" + ycoord + '\'' +
                 '}';
     }
 
@@ -126,6 +140,8 @@ public class Address implements Parcelable {
         dest.writeString(zipCode);
         dest.writeString(city);
         dest.writeString(country);
+        dest.writeString(xcoord);
+        dest.writeString(ycoord);
     }
 
     /**
@@ -164,5 +180,7 @@ public class Address implements Parcelable {
         zipCode = in.readString();
         city = in.readString();
         country = in.readString();
+        xcoord = in.readString();
+        ycoord = in.readString();
     }
 }

@@ -4,14 +4,24 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.SearchView;
+import android.widget.TextView;
+
+import com.citynights.dao.CityNightsDBHelper;
+import com.citynights.model.Address;
 
 
 public class MainActivity extends ActionBarActivity {
+
+    SearchView searchCity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        searchCity = (SearchView) findViewById(R.id.searchView);
     }
 
     @Override
@@ -35,4 +45,24 @@ public class MainActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+/*
+* TODO: METHODE UM ADDRESSEN ANZUZEIGEN:
+*
+    public void findAddresses (View view) {
+        CityNightsDBHelper dbHandler = new CityNightsDBHelper(this, null, null, 1);
+
+        Address product =
+                dbHandler.findAddressByCityname(searchCity.getQuery().toString());
+
+
+        if (product != null) {
+            idView.setText(String.valueOf(address.getId()));
+
+            quantityBox.setText(String.valueOf(product.getQuantity()));
+        } else {
+            idView.setText("No Match Found");
+        }
+    }
+*/
 }

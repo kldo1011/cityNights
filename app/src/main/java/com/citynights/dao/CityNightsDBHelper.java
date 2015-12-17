@@ -28,8 +28,9 @@ import com.citynights.model.Address;
 
 
 public class CityNightsDBHelper extends SQLiteOpenHelper {
-    public static final int DATABASE_VERSION = 6;
+    public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "cityNights.db";
+
     private static final String SQL_CREATE_TABLE_ADDRESS =
             "CREATE TABLE " + AddressEntry.TABLE_NAME + " (" +
                     AddressEntry._ID + " INTEGER PRIMARY KEY," +
@@ -38,7 +39,10 @@ public class CityNightsDBHelper extends SQLiteOpenHelper {
                     AddressEntry.COLUMN_NAME_ZIPCODE + " TEXT," +
                     AddressEntry.COLUMN_NAME_CITY + " TEXT," +
                     AddressEntry.COLUMN_NAME_COUNTRY + " TEXT" +
+                    AddressEntry.COLUMN_NAME_X_COORD + " TEXT" +
+                    AddressEntry.COLUMN_NAME_Y_COORD + "TEXT"+
                     ");";
+
     private static final String SQL_CREATE_TABLE_CUSTOMER =
             "CREATE TABLE " + CustomerEntry.TABLE_NAME + " (" +
                     CustomerEntry._ID + " INTEGER PRIMARY KEY," +
@@ -87,7 +91,7 @@ public class CityNightsDBHelper extends SQLiteOpenHelper {
                      */
                     "FOREIGN KEY(" + RatingEntry.COLUMN_CUSTOMER_FK + RatingEntry.COLUMN_PROPOSAL_FK +") REFERENCES " + CustomerEntry.TABLE_NAME + ProposalEntry.TABLE_NAME + "(" + CustomerEntry._ID + ProposalEntry._ID + ")" +
                     ")";
-    private static final String SQL_CREATE_TABLE_Book =
+    private static final String SQL_CREATE_TABLE_BOOK =
             "CREATE TABLE " + BookEntry.TABLE_NAME + " (" +
                     BookEntry._ID + " INTEGER PRIMARY KEY," +
                     BookEntry.COLUMN_CUSTOMER_FK + " INTEGER," +
@@ -103,7 +107,7 @@ public class CityNightsDBHelper extends SQLiteOpenHelper {
                      */
                     "FOREIGN KEY(" + BookEntry.COLUMN_CUSTOMER_FK + BookEntry.COLUMN_PROPOSAL_FK +") REFERENCES " + CustomerEntry.TABLE_NAME + ProposalEntry.TABLE_NAME + "(" + CustomerEntry._ID + ProposalEntry._ID + ")" +
                     ")";
-    private static final String SQL_CREATE_TABLE_Proposal =
+    private static final String SQL_CREATE_TABLE_PROPOSAL =
             "CREATE TABLE " + ProposalEntry.TABLE_NAME + " (" +
                     ProposalEntry._ID + " INTEGER PRIMARY KEY," +
                     ProposalEntry.COLUMN_PROVIDER_FK + " INTEGER," +
@@ -151,12 +155,21 @@ public class CityNightsDBHelper extends SQLiteOpenHelper {
                     "FOREIGN KEY(" + ProposalEntry.COLUMN_PROVIDER_FK + ProposalEntry.COLUMN_ADDRESS_FK +") REFERENCES " + ProviderEntry.TABLE_NAME + AddressEntry.TABLE_NAME + "(" + ProviderEntry._ID + AddressEntry._ID + ")" +
                     ")";
 
+
+    /**
+     * Datenbank mit Beispiel Daten füllen
+     *
+     */
+    private static final String SQL_INSERT_TABLE_ADDRESS_BERLIN_1 = "INSERT INTO " + AddressEntry.TABLE_NAME + "VALUES(1, \"Tempelhofer Ufer\", \"14\", \"10963\", \"Berlin\", \"Deutschland\", \"52.498579\",\"13.384430\");";
+
+
+
     private static final String SQL_DROP_TABLE_CUSTOMER = "DROP TABLE IF EXISTS " + CustomerEntry.TABLE_NAME + ";";
     private static final String SQL_DROP_TABLE_ADDRESS = "DROP TABLE IF EXISTS " + AddressEntry.TABLE_NAME + ";";
     private static final String SQL_DROP_TABLE_PROVIDER = "DROP TABLE IF EXISTS " + ProviderEntry.TABLE_NAME + ";";
     private static final String SQL_DROP_TABLE_BOOK= "DROP TABLE IF EXISTS " + BookEntry.TABLE_NAME + ";";
     private static final String SQL_DROP_TABLE_RATING = "DROP TABLE IF EXISTS " + RatingEntry.TABLE_NAME + ";";
-    private static final String SQL_DROP_TABLE_Favorite = "DROP TABLE IF EXISTS " + FavoriteEntry.TABLE_NAME + ";";
+    private static final String SQL_DROP_TABLE_FAVORITE = "DROP TABLE IF EXISTS " + FavoriteEntry.TABLE_NAME + ";";
     private static final String SQL_DROP_TABLE_PROPOSAL = "DROP TABLE IF EXISTS " + ProposalEntry.TABLE_NAME + ";";
     private static CityNightsDBHelper instance = null;
     private Context ctx;
@@ -203,6 +216,38 @@ public class CityNightsDBHelper extends SQLiteOpenHelper {
         SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
         qb.setTables(CustomerEntry.TABLE_NAME + " JOIN " + AddressEntry.TABLE_NAME + " ON " + CustomerEntry.TABLE_NAME + "." + CustomerEntry.COLUMN_ADDRESS_FK + "=" + AddressEntry.TABLE_NAME + "." + AddressEntry._ID);
         return qb.query(getReadableDatabase(),null,whereClause, whereArgs, null, null, sortOrder);
+    }
+
+
+    /** GetAddresses
+     *
+     */
+
+    public Address findAddressByCityname(String city) {
+        String query = "Select * FROM " + AddressEntry.TABLE_NAME + " WHERE " + AddressEntry.COLUMN_NAME_CITY + " =  \"" + city + "\"";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        Address address = new Address();
+
+        if (cursor.moveToFirst()) {
+            cursor.moveToFirst();
+            address.setId(Integer.parseInt(cursor.getString(0)));
+            address.setStreet(cursor.getString(1));
+            address.setNumber(cursor.getString(2));
+            address.setZipCode(cursor.getString(3));
+            address.setCity(cursor.getString(4));
+            address.setCountry(cursor.getString(5));
+            address.setXCoord(cursor.getString(6));
+            address.setYCoord(cursor.getString(7));
+            cursor.close();
+        } else {
+            address = null;
+        }
+        db.close();
+        return address;
     }
 
     /**
@@ -348,6 +393,8 @@ public class CityNightsDBHelper extends SQLiteOpenHelper {
         values.put(AddressEntry.COLUMN_NAME_ZIPCODE, address.getZipCode());
         values.put(AddressEntry.COLUMN_NAME_CITY, address.getCity());
         values.put(AddressEntry.COLUMN_NAME_COUNTRY, address.getCountry());
+        values.put(AddressEntry.COLUMN_NAME_X_COORD, address.getXCoord());
+        values.put(AddressEntry.COLUMN_NAME_Y_COORD, address.getYcoord());
         return values;
     }
 
@@ -360,6 +407,13 @@ public class CityNightsDBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SQL_CREATE_TABLE_ADDRESS);
         db.execSQL(SQL_CREATE_TABLE_CUSTOMER);
+        db.execSQL(SQL_CREATE_TABLE_PROVIDER);
+        db.execSQL(SQL_CREATE_TABLE_PROPOSAL);
+        db.execSQL(SQL_CREATE_TABLE_BOOK);
+        db.execSQL(SQL_CREATE_TABLE_FAVORITE);
+        db.execSQL(SQL_CREATE_TABLE_RATING);
+        db.execSQL(SQL_INSERT_TABLE_ADDRESS_BERLIN_1);
+
     }
 
     /**
@@ -373,6 +427,11 @@ public class CityNightsDBHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL(SQL_DROP_TABLE_CUSTOMER);
         db.execSQL(SQL_DROP_TABLE_ADDRESS);
+        db.execSQL(SQL_DROP_TABLE_PROVIDER);
+        db.execSQL(SQL_DROP_TABLE_PROPOSAL);
+        db.execSQL(SQL_DROP_TABLE_BOOK);
+        db.execSQL(SQL_DROP_TABLE_FAVORITE);
+        db.execSQL(SQL_DROP_TABLE_RATING);
         onCreate(db);
     }
 
@@ -388,13 +447,3 @@ public class CityNightsDBHelper extends SQLiteOpenHelper {
         onUpgrade(db, oldVersion, newVersion);
     }
 }
-
-
-
-
-
-
-
-
-
-
