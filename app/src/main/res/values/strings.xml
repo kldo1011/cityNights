@@ -5,4 +5,7 @@
     <string name="action_settings">Settings</string>
     <string name="search_hint">Zielort</string>
     <string name="title_activity_search">Search</string>
+    <string name="loginbtn">Login</string>
+    <string name="signupbtn">Registrieren</string>
+    <string name="facebookloginbtn">Mit Facebook anmelden</string>
 </resources>
