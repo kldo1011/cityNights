@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="day_array">day_array</string-array>
+    <string-array name="month_array">month_array</string-array>
+    <string-array name="year_array">year_array</string-array>
+</resources>

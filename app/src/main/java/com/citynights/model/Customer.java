@@ -27,12 +27,14 @@ public class Customer implements Parcelable {
      * @param mail      mail address
      * @param address   address of the Customer
      */
-    public Customer(String firstName, String lastName, String phone, String mail, Address address) {
+    public Customer(String firstName, String lastName, String phone, String mail, Address address, String password, String newsletter) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phone = phone;
         this.mail = mail;
         this.address = address;
+        this.password=password;
+        this.newsletter=newsletter;
     }
 
     private long id;
@@ -41,6 +43,24 @@ public class Customer implements Parcelable {
     private String phone;
     private String mail;
     private Address address;
+    private String password;
+    private String newsletter;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getNewsletter() {
+        return newsletter;
+    }
+
+    public void setNewsletter(String newsletter) {
+        this.newsletter = newsletter;
+    }
 
     public long getId() {
         return id;
@@ -91,6 +111,8 @@ public class Customer implements Parcelable {
     }
 
 
+
+
     @Override
     public String toString() {
         return "Customer{" +
@@ -100,6 +122,7 @@ public class Customer implements Parcelable {
                 ", phone='" + phone + '\'' +
                 ", mail='" + mail + '\'' +
                 ", address=" + address +
+                ", newsletter=" + newsletter +
                 '}';
     }
 
@@ -127,6 +150,8 @@ public class Customer implements Parcelable {
         dest.writeString(phone);
         dest.writeString(mail);
         dest.writeParcelable(address, flags);
+        dest.writeString(password);
+        dest.writeString(newsletter);
     }
 
     /**
@@ -164,6 +189,8 @@ public class Customer implements Parcelable {
         lastName = in.readString();
         phone = in.readString();
         mail = in.readString();
+        password = in.readString();
+        newsletter = in.readString();
         address = in.readParcelable(Address.class.getClassLoader());
     }
 }

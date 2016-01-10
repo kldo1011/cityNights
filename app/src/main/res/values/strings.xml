@@ -7,4 +7,18 @@
     <string name="title_activity_search">Search</string>
     <string name="title_activity_after_search">AfterSearchActivity</string>
     <string name="title_activity_searchable">SearchableActivity</string>
+    <string name="signupbtn">Registrieren</string>
+    <string name="change_pic">change_pic</string>
+    <string name="delete_pic">delete_pic</string>
+    <string name="email">email</string>
+    <string name="DayOfBirth">DayOfBirth</string>
+    <string name="day_prompt">day_prompt</string>
+    <string name="month_prompt">month_prompt</string>
+    <string name="year_prompt">year_prompt</string>
+    <string name="change_password">change_password</string>
+    <string name="save_profile">save_profile</string>
+    <string name="cancel_profile">cancel_profile</string>
+    <string name="button_comments">button_comments</string>
+    <string name="button_favorites">button_favorites</string>
+    <string name="password_again">password_again</string>
 </resources>

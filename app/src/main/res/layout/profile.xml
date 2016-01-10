@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="top|center"
+    android:weightSum="1">
+    <!--tools:context="com.app.selina.CH.ProfileTestActivity"-->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="188dp"
+                android:layout_height="188dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/profilbild"
+                android:id="@+id/profilepic"
+                android:layout_gravity="center_horizontal" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/username"
+                android:layout_gravity="center_horizontal"
+                android:textStyle="bold"
+                android:textSize="23dp"
+                android:textColor="#6c0698" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="17dp"
+                android:id="@+id/residence"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="10dp"
+                android:clickable="false" />
+
+            <!--<TextSwitcher-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:id="@+id/textSwitcher"-->
+                <!--android:layout_gravity="right" />-->
+
+            <!--<Space-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="41dp"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:layout_alignRight="@+id/favorites_button"-->
+                <!--android:layout_alignEnd="@+id/favorites_button"-->
+                <!--android:id="@+id/space1" />-->
+
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:gravity = "center_horizontal"
+                android:id="@+id/buttons"
+                android:weightSum="1.0">
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/button_comments"
+                    android:id="@+id/comments_button"
+                    android:onClick="onShowComments"
+                    android:singleLine="false"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/profile_button_selector"/>
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/button_favorites"
+                    android:id="@+id/favorites_button"
+                    android:layout_alignBottom="@+id/comments_button"
+                    android:singleLine="false"
+                    android:onClick="onShowFavorites"
+                    android:layout_weight="0.5"
+                    android:background="@drawable/profile_button_selector"/>
+            </LinearLayout>
+            <!--
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/rlay">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/button_comments"
+                    android:id="@+id/comments_button"
+                    android:gravity="left|center"
+                    android:layout_gravity="right|center"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:onClick="onShowComments"
+                    android:paddingLeft="50dp"
+                    android:paddingRight="50dp"
+                    android:singleLine="false" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/button_favorites"
+                    android:id="@+id/favorites_button"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:gravity="center|right"
+                    android:layout_alignBottom="@+id/comments_button"
+                    android:singleLine="false"
+                    android:onClick="onShowFavorites"
+                    android:paddingRight="55dp"
+                    android:paddingLeft="55dp"/>
+
+            </RelativeLayout>
+            -->
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="18dp" />
+
+            <TextView
+                android:id="@+id/txtemail"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:text="@string/email"
+                android:textColor="#6c0698" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:ems="10"
+                android:id="@+id/email"
+                android:textSize="20dp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="13dp"
+                android:layout_gravity="center_horizontal" />
+
+            <TextView
+                android:id="@+id/txtbday"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:text="@string/DayOfBirth"
+                android:textColor="#6c0698" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="date"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:ems="10"
+                android:id="@+id/birthdate"
+                android:textSize="20dp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:id="@+id/sp2" />
+
+
+
+            //TODO Musikstile ausklappbar
+
+            <TextView
+                android:layout_width="128dp"
+                android:layout_height="wrap_content"
+                android:text="Musikstile"
+                android:id="@+id/musikstile"
+                android:layout_gravity="center_horizontal"
+                android:textSize="20dp"
+                android:gravity="center" />
+
+            <TableLayout
+                android:layout_width="264dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="House"
+                        android:id="@+id/ms_house"
+                        android:layout_weight="0.11"
+                        android:checked="true"
+                        android:layout_column="0"
+                        android:clickable="false"
+                        android:enabled="true"
+                        android:focusable="true"
+                        android:backgroundTint="#6c0698"
+                        android:buttonTint="#6c0698"
+                        android:fontFamily="#6c0698"/>
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Charts"
+                        android:id="@+id/ms_charts"
+                        android:layout_column="12"
+                        android:checked="true"
+                        android:enabled="true"
+                        android:focusable="true"
+                        android:backgroundTint="#6c0698"
+                        android:buttonTint="#6c0698"
+                        android:fontFamily="#6c0698"/>
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Electro"
+                        android:id="@+id/ms_electro"
+                        android:layout_weight="0.11"
+                        android:checked="true"
+                        android:layout_column="0"
+                        android:enabled="true"
+                        android:focusable="true"
+                        android:backgroundTint="#6c0698"
+                        android:buttonTint="#6c0698"
+                        android:fontFamily="#6c0698"/>
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rock"
+                        android:id="@+id/ms_rock"
+                        android:layout_column="12"
+                        android:checked="false"
+                        android:enabled="true"
+                        android:focusable="true"
+                        android:backgroundTint="#6c0698"
+                        android:buttonTint="#6c0698"
+                        android:fontFamily="#6c0698"/>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="HipHop"
+                        android:id="@+id/ms_hiphop"
+                        android:layout_weight="0.11"
+                        android:checked="false"
+                        android:layout_column="0"
+                        android:enabled="true"
+                        android:backgroundTint="#6c0698"
+                        android:buttonTint="#6c0698"
+                        android:fontFamily="#6c0698" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Metal"
+                        android:id="@+id/ms_metal"
+                        android:layout_column="12"
+                        android:checked="false"
+                        android:enabled="true"
+                        android:backgroundTint="#6c0698"
+                        android:buttonTint="#6c0698"
+                        android:fontFamily="#6c0698" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="RnB"
+                        android:id="@+id/ms_rnb"
+                        android:layout_weight="0.11"
+                        android:checked="false"
+                        android:layout_column="0"
+                        android:enabled="true"
+                        android:backgroundTint="#6c0698"
+                        android:buttonTint="#6c0698"
+                        android:fontFamily="#6c0698" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Dubstep"
+                        android:id="@+id/ms_dubstep"
+                        android:layout_column="12"
+                        android:checked="false"
+                        android:enabled="true"
+                        android:backgroundTint="#6c0698"
+                        android:buttonTint="#6c0698"
+                        android:fontFamily="#6c0698" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Schlager"
+                        android:id="@+id/ms_schlager"
+                        android:layout_weight="0.11"
+                        android:checked="false"
+                        android:layout_column="0"
+                        android:enabled="true"
+                        android:backgroundTint="#6c0698"
+                        android:buttonTint="#6c0698"
+                        android:fontFamily="#6c0698" />
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rap"
+                        android:id="@+id/ms_rap"
+                        android:layout_column="12"
+                        android:checked="false"
+                        android:enabled="true"
+                        android:backgroundTint="#6c0698"
+                        android:buttonTint="#6c0698"
+                        android:fontFamily="#6c0698" />
+                </TableRow>
+            </TableLayout>
+
+
+            //TODO Preisrahmen ausklappbar
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Preisrahmen"
+                android:id="@+id/preisrahmen"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:textSize="20dp" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal">
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="€"
+                    android:id="@+id/pr1"
+                    android:checked="true"
+                    android:textSize="18dp"
+                    android:enabled="true"
+                    android:focusable="true"
+                    android:backgroundTint="#6c0698"
+                    android:buttonTint="#6c0698"
+                    android:fontFamily="#6c0698"/>
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="€€"
+                    android:id="@+id/pr2"
+                    android:layout_gravity="center_horizontal"
+                    android:checked="true"
+                    android:textSize="18dp"
+                    android:enabled="true"
+                    android:focusable="true"
+                    android:backgroundTint="#6c0698"
+                    android:buttonTint="#6c0698"
+                    android:fontFamily="#6c0698"/>
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="€€€"
+                    android:id="@+id/pr3"
+                    android:layout_gravity="center_horizontal"
+                    android:checked="false"
+                    android:textSize="18dp"
+                    android:enabled="true"
+                    android:focusable="true"
+                    android:backgroundTint="#6c0698"
+                    android:buttonTint="#6c0698"
+                    android:fontFamily="#6c0698"/>
+
+
+            </LinearLayout>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Profil bearbeiten"
+                android:id="@+id/edit_button"
+                android:textSize="15sp"
+                android:padding="15dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_margin="10dip"
+                android:background="@drawable/default_button_selector"
+                android:onClick="onEditPage"
+                android:textColor="#6c0698" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

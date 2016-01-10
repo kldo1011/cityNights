@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#36648B</color>
+    <color name="colorPrimaryDark">#5CACEE</color>
+    <color name="colorAccent">#4F94CD</color>
+    <color name="facebook_login_button">#3B5998</color>
+    <color name="facebook_login_button_push">#2E4677</color>
+    <color name="facebook_login_button_focus">#304F8B</color>
+</resources>
