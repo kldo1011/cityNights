@@ -1,4 +1,4 @@
-package com.citynights;
+/*package com.citynights;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -78,11 +78,11 @@ public class MainActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
+}
 /*
 * TODO: METHODE UM ADDRESSEN ANZUZEIGEN
 * TODO: Suche auf neue Activity verlinken
 
 */
 
-}
+

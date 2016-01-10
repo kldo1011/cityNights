@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group
+        android:id="@+id/main"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:title="@string/action_home" />
+        <item
+            android:id="@+id/nav_suche"
+            android:icon="@drawable/ic_search_black_24dp"
+            android:title="@string/action_suche" />
+        <item
+            android:id="@+id/nav_navigation"
+            android:icon="@drawable/ic_explore_black_24dp"
+            android:title="@string/action_navigation" />
+    </group>
+    <group
+        android:id="@+id/personal"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_konto"
+            android:icon="@drawable/ic_account_circle_black_24dp"
+            android:title="@string/action_konto" />
+        <item
+            android:id="@+id/nav_bestellungen"
+            android:icon="@drawable/ic_credit_card_black_24dp"
+            android:title="@string/action_buchungen" />
+        <item
+            android:id="@+id/nav_favoriten"
+            android:icon="@drawable/ic_bookmark_black_24dp"
+            android:title="@string/action_favoriten" />
+    </group>
+    <group
+        android:id="@+id/etc"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_einstellungen"
+            android:icon="@drawable/ic_build_black_24dp"
+            android:title="@string/action_einstellungen" />
+        <item
+            android:id="@+id/nav_uber"
+            android:icon="@drawable/ic_info_black_24dp"
+            android:title="@string/action_uber" />
+    </group>
+</menu>

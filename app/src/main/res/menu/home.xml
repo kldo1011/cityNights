@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/nav_konto"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_account_circle_black_24dp"
+        android:title="@string/action_konto"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/nav_favoriten"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_bookmark_border_black_24dp"
+        android:title="@string/action_favoriten"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/nav_einstellungen"
+        android:orderInCategory="100"
+        android:title="@string/action_einstellungen"
+        app:showAsAction="never" />
+</menu>
