@@ -31,15 +31,16 @@ public final class DatabaseSchema {
 
     /**
      * Defines the columns for address table
+     * X und Y Koordinaten für Google Maps
      */
     public static abstract class AddressEntry implements BaseColumns {
         public static final String TABLE_NAME = "address";
+        public static final String COLUMN_NAME_ID = "_ID";
         public static final String COLUMN_NAME_STREET = "street";
         public static final String COLUMN_NAME_NUMBER = "number";
         public static final String COLUMN_NAME_ZIPCODE = "zip_code";
         public static final String COLUMN_NAME_CITY = "city";
         public static final String COLUMN_NAME_COUNTRY = "country";
-        // X und Y Koordinaten für Google Maps
         public static final String COLUMN_NAME_X_COORD = "xcoord";
         public static final String COLUMN_NAME_Y_COORD = "ycoord";
     }
