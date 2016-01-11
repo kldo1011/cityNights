@@ -13,9 +13,10 @@ public class Proposal  implements Parcelable {
     }
 
 
-    public Proposal(Provider provider, Address address, String accommodationtype, String description, String bath, String tv, String WLAN, String internetaccess, String restaurant, String bar, String aircondition, String pool, String room1name, String room1descrition, double room1price, String room2name, String room2descrition, double room2price,String room3name, String room3descrition, double room3price) {
+    public Proposal(Integer provider, Integer address,String name, String accommodationtype, String description, String bath, String tv, String WLAN, String internetaccess, String restaurant, String bar, String aircondition, String pool, String room1name, String room1descrition, double room1price, String room2name, String room2descrition, double room2price,String room3name, String room3descrition, double room3price) {
         this.provider = provider;
         this.address = address;
+        this.name = name;
         this.accommodationtype = accommodationtype;
         this.description = description;
         this.bath = bath;
@@ -38,8 +39,9 @@ public class Proposal  implements Parcelable {
     }
 
     private long id;
-    private Provider provider;
-    private Address address;
+    private Integer provider;
+    private Integer address;
+    private String name;
     private String accommodationtype;
     private String description;
     private String bath;
@@ -71,20 +73,26 @@ public class Proposal  implements Parcelable {
         this.id = id;
     }
 
-    public Provider getProvider() {
+    public Integer getProvider() {
         return provider;
     }
 
-    public void setProvider(Provider provider) {
+    public void setProvider(Integer provider) {
         this.provider = provider;
     }
 
-    public Address getAddress() {
+    public Integer getAddress() {
         return address;
     }
 
-    public void setAddress(Address address) {
+    public void setAddress(Integer address) {
         this.address = address;
+    }
+
+    public String getName() { return name; }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getAccommodationtype() {
@@ -245,6 +253,7 @@ public class Proposal  implements Parcelable {
                 "id=" + id +
                 ", provider='" + provider + '\'' +
                 ", address='" + address + '\'' +
+                ", name='" + name + '\'' +
                 ", accommodationtype='" + accommodationtype + '\'' +
                 ", bath='" + bath + '\'' +
                 ", tv='" + tv+ '\'' +
@@ -285,8 +294,9 @@ public class Proposal  implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeLong(id);
-        dest.writeParcelable(provider, flags);
-        dest.writeParcelable(address, flags);
+        dest.writeInt(provider);
+        dest.writeInt(address);
+        dest.writeString(name);
         dest.writeString(accommodationtype);
         dest.writeString(description);
         dest.writeString(bath);
@@ -339,8 +349,9 @@ public class Proposal  implements Parcelable {
      */
     private Proposal(Parcel in) {
         id = in.readLong();
-        provider = in.readParcelable(Provider.class.getClassLoader());
-        address = in.readParcelable(Address.class.getClassLoader());
+        provider = in.readInt();
+        address = in.readInt();
+        name = in.readString();
         accommodationtype = in.readString();
         description = in.readString();
         bath = in.readString();

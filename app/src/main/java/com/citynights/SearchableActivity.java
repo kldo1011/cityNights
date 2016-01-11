@@ -1,31 +1,37 @@
 package com.citynights;
 
-
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.os.Bundle;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import java.util.List;
+import com.citynights.dao.ProposalDataSource;
+import com.citynights.model.Proposal;
 
-/**
- * Created by Dominik on 20.12.2015.
- */
 
-public class HomeActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class SearchableActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener   {
+
+    public static final String LOG_TAG = SearchableActivity.class.getSimpleName();
+
+    private ProposalDataSource dataSource;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_searchable);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -46,6 +52,30 @@ public class HomeActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        dataSource = new ProposalDataSource(this);
+
+        Log.d(LOG_TAG, "Die Datenquelle wird geöffnet.");
+        dataSource.open();
+
+
+        Log.d(LOG_TAG, "Folgende Einträge sind in der Datenbank vorhanden:");
+        showAllListEntries();
+
+        Log.d(LOG_TAG, "Die Datenquelle wird geschlossen.");
+        dataSource.close();
+    }
+
+    private void showAllListEntries () {
+        List<Proposal> proposalList = dataSource.getAllProposals();
+
+        ArrayAdapter<Proposal> proposalArrayAdapter = new ArrayAdapter<> (
+                this,
+                android.R.layout.simple_list_item_multiple_choice,
+                proposalList);
+
+        ListView proposalListView = (ListView) findViewById(R.id.listview_addresses);
+        proposalListView.setAdapter(proposalArrayAdapter);
     }
 
     @Override
@@ -93,9 +123,12 @@ public class HomeActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
+
+            Intent in=new Intent(SearchableActivity.this,HomeActivity.class);
+            startActivity(in);
             // Handle the camera action
         } else if (id == R.id.nav_suche) {
-            Intent in=new Intent(HomeActivity.this,SearchableActivity.class);
+            Intent in=new Intent(SearchableActivity.this,SearchableActivity.class);
             startActivity(in);
 
         } else if (id == R.id.nav_navigation) {

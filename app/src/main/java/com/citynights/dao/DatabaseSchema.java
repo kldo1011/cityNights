@@ -64,7 +64,8 @@ public final class DatabaseSchema {
         public static final String TABLE_NAME = "proposal";
         public static final String COLUMN_PROVIDER_FK = "provider_fk";
         public static final String COLUMN_ADDRESS_FK = "address_fk";
-        public static final String COLUMN_NAME_TYPE_OF_ACCOMMONDATION = "type_of_accomondation";
+        public static final String COLUMN_NAME_NAME = "name";
+        public static final String COLUMN_NAME_TYPE_OF_ACCOMMONDATION = "type_of_accommondation";
         public static final String COLUMN_NAME_DESCRIPTION = "description";
         public static final String COLUMN_NAME_BATHROOM = "bathroom";
         public static final String COLUMN_NAME_TELEVSION = "television";
@@ -83,7 +84,7 @@ public final class DatabaseSchema {
         public static final String COLUMN_NAME_ROOM3_NAME = "room3_name";
         public static final String COLUMN_NAME_ROOM3_description = "room3_description";
         public static final String COLUMN_NAME_ROOM3_price = "room3_price";
-        public static final String COLUMN_NAME_ROOM4_NAME = "room4_name";
+        /*public static final String COLUMN_NAME_ROOM4_NAME = "room4_name";
         public static final String COLUMN_NAME_ROOM4_description = "room4_description";
         public static final String COLUMN_NAME_ROOM4_price = "room4_price";
         public static final String COLUMN_NAME_ROOM5_NAME = "room5_name";
@@ -100,7 +101,7 @@ public final class DatabaseSchema {
         public static final String COLUMN_NAME_ROOM8_price = "room8_price";
         public static final String COLUMN_NAME_ROOM9_NAME = "room9_name";
         public static final String COLUMN_NAME_ROOM9_description = "room9_description";
-        public static final String COLUMN_NAME_ROOM9_price = "room9_price";
+        public static final String COLUMN_NAME_ROOM9_price = "room9_price";*/
 
     }
 
