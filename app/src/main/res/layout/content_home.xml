@@ -15,5 +15,40 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Herzlich Willkommen bei CityNights!" />
+        android:text="Herzlich Willkommen bei CityNights!"
+        android:id="@+id/textView"
+        android:layout_alignRight="@+id/buttonSignIN"
+        android:layout_alignEnd="@+id/buttonSignIN"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:elegantTextHeight="false"
+        android:textSize="20dp"
+        android:textStyle="normal"
+        android:textColor="#f0f0f0" />
+    <Button
+        android:id="@+id/buttonSignIN"
+        android:layout_width="202dp"
+        android:layout_height="wrap_content"
+        android:text="@string/SignIn"
+        android:onClick="signIn"
+        android:layout_gravity="center_vertical"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="66dp"
+        android:layout_alignRight="@+id/buttonSignUP"
+        android:layout_alignEnd="@+id/buttonSignUP" />
+
+    <Button
+        android:id="@+id/buttonSignUP"
+        android:layout_width="184dp"
+        android:layout_height="wrap_content"
+        android:text="@string/SignUp"
+        android:layout_gravity="center_vertical"
+        android:layout_below="@+id/buttonSignIN"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
 </RelativeLayout>

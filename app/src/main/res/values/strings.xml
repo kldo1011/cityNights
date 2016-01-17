@@ -33,4 +33,6 @@
     <string name="action_favoriten">Favoriten</string>
     <string name="action_einstellungen">Einstellungen</string>
     <string name="action_uber">Über Uns</string>
+    <string name="SignUp">Registrieren</string>
+    <string name="SignIn">Login</string>
 </resources>

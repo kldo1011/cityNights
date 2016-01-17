@@ -20,12 +20,13 @@ public final class DatabaseSchema {
      */
     public static abstract class CustomerEntry implements BaseColumns {
         public static final String TABLE_NAME = "customer";
+        public static final String COLUMN_NAME_USERNAME = "username";
+        public static final String COLUMN_NAME_PASSWORD = "password";
         public static final String COLUMN_NAME_FIRSTNAME = "first_name";
         public static final String COLUMN_NAME_LASTNAME = "last_name";
         public static final String COLUMN_NAME_PHONE = "phone";
         public static final String COLUMN_NAME_MAIL = "mail";
         public static final String COLUMN_ADDRESS_FK = "address_fk";
-        public static final String COLUMN_NAME_PASSWORD = "password";
         public static final String COLUMN_NAME_NEWSLETTER = "newsletter";
     }
 

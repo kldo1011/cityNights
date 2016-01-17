@@ -27,40 +27,26 @@ public class Customer implements Parcelable {
      * @param mail      mail address
      * @param address   address of the Customer
      */
-    public Customer(String firstName, String lastName, String phone, String mail, Address address, String password, String newsletter) {
+    public Customer(String username, String password, String firstName, String lastName, String phone, String mail, Integer address,  String newsletter) {
+        this.username = username;
+        this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phone = phone;
         this.mail = mail;
         this.address = address;
-        this.password=password;
         this.newsletter=newsletter;
     }
 
     private long id;
+    private String username;
+    private String password;
     private String firstName;
     private String lastName;
     private String phone;
     private String mail;
-    private Address address;
-    private String password;
+    private Integer address;
     private String newsletter;
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getNewsletter() {
-        return newsletter;
-    }
-
-    public void setNewsletter(String newsletter) {
-        this.newsletter = newsletter;
-    }
 
     public long getId() {
         return id;
@@ -68,6 +54,18 @@ public class Customer implements Parcelable {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getUsername() { return username; }
+
+    public void setUsername(String username) { this.username = username; }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getFirstName() {
@@ -102,12 +100,20 @@ public class Customer implements Parcelable {
         this.mail = mail;
     }
 
-    public Address getAddress() {
+    public Integer getAddress() {
         return address;
     }
 
-    public void setAddress(Address address) {
+    public void setAddress(Integer address) {
         this.address = address;
+    }
+
+    public String getNewsletter() {
+        return newsletter;
+    }
+
+    public void setNewsletter(String newsletter) {
+        this.newsletter = newsletter;
     }
 
 
@@ -117,6 +123,8 @@ public class Customer implements Parcelable {
     public String toString() {
         return "Customer{" +
                 "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", phone='" + phone + '\'' +
@@ -145,12 +153,13 @@ public class Customer implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeLong(id);
+        dest.writeString(username);
+        dest.writeString(password);
         dest.writeString(firstName);
         dest.writeString(lastName);
         dest.writeString(phone);
         dest.writeString(mail);
-        dest.writeParcelable(address, flags);
-        dest.writeString(password);
+        dest.writeInt(address);
         dest.writeString(newsletter);
     }
 
@@ -185,12 +194,14 @@ public class Customer implements Parcelable {
      */
     private Customer(Parcel in) {
         id = in.readLong();
+        username = in.readString();
+        password = in.readString();
         firstName = in.readString();
         lastName = in.readString();
         phone = in.readString();
         mail = in.readString();
-        password = in.readString();
+        address = in.readInt();
         newsletter = in.readString();
-        address = in.readParcelable(Address.class.getClassLoader());
+
     }
 }
