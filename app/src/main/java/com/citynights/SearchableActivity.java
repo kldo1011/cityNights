@@ -1,6 +1,7 @@
 package com.citynights;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -14,18 +15,33 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.SearchView;
+import android.widget.SimpleCursorAdapter;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Handler;
+
+import com.citynights.dao.CityNightsDBHelper;
+import com.citynights.dao.DatabaseSchema;
 import com.citynights.dao.ProposalDataSource;
 import com.citynights.model.Proposal;
 
 
-public class SearchableActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener   {
+public class SearchableActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SearchView.OnQueryTextListener, SearchView.OnCloseListener   {
 
     public static final String LOG_TAG = SearchableActivity.class.getSimpleName();
 
     private ProposalDataSource dataSource;
+    private SearchView searchView;
+    private ListView myList;
+    private MyCustomAdapter defaultAdapter;
+    private ArrayList<Proposal> proposalList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,30 +69,118 @@ public class SearchableActivity extends AppCompatActivity implements NavigationV
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        dataSource = new ProposalDataSource(this);
+        proposalList = new ArrayList<Proposal>();
 
-        Log.d(LOG_TAG, "Die Datenquelle wird geöffnet.");
+
+        //relate the listView from java to the one created in xml
+        myList = (ListView) findViewById(R.id.list);
+
+        //show the ListView on the screen
+        // The adapter MyCustomAdapter is responsible for maintaining the data backing this nameList and for producing
+        // a view to represent an item in that data set.
+        defaultAdapter = new MyCustomAdapter(SearchableActivity.this, proposalList);
+        myList.setAdapter(defaultAdapter);
+
+        //prepare the SearchView
+        searchView = (SearchView) findViewById(R.id.searchView);
+
+        //Sets the default or resting state of the search field. If true, a single search icon is shown by default and
+        // expands to show the text field and other buttons when pressed. Also, if the default state is iconified, then it
+        // collapses to that state when the close button is pressed. Changes to this property will take effect immediately.
+        //The default value is true.
+        searchView.setIconifiedByDefault(false);
+
+        searchView.setOnQueryTextListener(this);
+        searchView.setOnCloseListener(this);
+
+        dataSource = new ProposalDataSource(this);
         dataSource.open();
 
-
-        Log.d(LOG_TAG, "Folgende Einträge sind in der Datenbank vorhanden:");
-        showAllListEntries();
-
-        Log.d(LOG_TAG, "Die Datenquelle wird geschlossen.");
-        dataSource.close();
     }
 
-    private void showAllListEntries () {
-        List<Proposal> proposalList = dataSource.getAllProposals();
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
 
-        ArrayAdapter<Proposal> proposalArrayAdapter = new ArrayAdapter<> (
-                this,
-                android.R.layout.simple_list_item_multiple_choice,
-                proposalList);
-
-        ListView proposalListView = (ListView) findViewById(R.id.listview_addresses);
-        proposalListView.setAdapter(proposalArrayAdapter);
+        if (dataSource  != null) {
+            dataSource.close();
+        }
     }
+
+    @Override
+    public boolean onClose() {
+        myList.setAdapter(defaultAdapter);
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        displayResults(query);
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        if (!newText.isEmpty()){
+            displayResults(newText);
+        } else {
+            myList.setAdapter(defaultAdapter);
+        }
+
+        return false;
+    }
+
+    /**
+     * Method used for performing the search and displaying the results. This method is called every time a letter
+     * is introduced in the search field.
+     *
+     * @param query Query used for performing the search
+     */
+    private void displayResults(String query) {
+
+        Cursor cursor = dataSource.searchByInputText((query != null ? query : "@@@@"));
+
+        if (cursor != null) {
+
+            String[] from = new String[] {DatabaseSchema.ProposalEntry.COLUMN_NAME_NAME};
+
+            // Specify the view where we want the results to go
+            int[] to = new int[] {R.id.search_result_text_view};
+
+            // Create a simple cursor adapter to keep the search data
+            SimpleCursorAdapter cursorAdapter = new SimpleCursorAdapter(this, R.layout.result_search_item, cursor, from, to);
+            myList.setAdapter(cursorAdapter);
+
+            // Click listener for the searched item that was selected
+            myList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                    // Get the cursor, positioned to the corresponding row in the result set
+                    Cursor cursor = (Cursor) myList.getItemAtPosition(position);
+
+                    // Get the state's capital from this row in the database.
+                    String selectedName = cursor.getString(cursor.getColumnIndexOrThrow("name"));
+                    Toast.makeText(SearchableActivity.this, selectedName, Toast.LENGTH_SHORT).show();
+                    setContentView(R.layout.detail_berlin_1);
+
+                    // Set the default adapter
+                    myList.setAdapter(defaultAdapter);
+
+                    // Find the position for the original list by the selected name from search
+                    for (int pos = 0; pos < proposalList.size(); pos++) {
+                        if (proposalList.get(pos).equals(selectedName)){
+                            position = pos;
+                            break;
+                        }
+                    }
+
+                    searchView.setQuery("",true);
+                }
+            });
+
+        }
+    }
+
 
     @Override
     public void onBackPressed() {

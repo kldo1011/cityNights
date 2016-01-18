@@ -170,6 +170,10 @@ public class CityNightsDBHelper extends SQLiteOpenHelper {
     private static final String SQL_INSERT_TABLE_ADDRESS_BERLIN_5 = "INSERT INTO " + AddressEntry.TABLE_NAME + " VALUES(5, \"Pappelallee\", \"21\", \"10437\", \"Berlin\", \"Deutschland\", \"52.544150\",\"13.416049\");";
     //Sunflower Hostel Berlin
     private static final String SQL_INSERT_TABLE_ADDRESS_BERLIN_6 = "INSERT INTO " + AddressEntry.TABLE_NAME + " VALUES(6, \"Helsingforser Straße\", \"17\", \"10243\", \"Berlin\", \"Deutschland\", \"52.509630\",\"13.446274\");";
+    //Generator Hostel Hamburg
+    private static final String SQL_INSERT_TABLE_ADDRESS_HAMBURG_1 = "INSERT INTO " + AddressEntry.TABLE_NAME + " VALUES(8, \"Steintorplatz\", \"3\", \"20099\", \"Hamburg\", \"Deutschland\", \"53.552646\",\"10.009277\");";
+    //Superbude St.Pauli Hotel Hostel Lounge
+    private static final String SQL_INSERT_TABLE_ADDRESS_HAMBURG_2 = "INSERT INTO " + AddressEntry.TABLE_NAME + " VALUES(9, \"Juliusstraße\", \"1-7\", \"22769\", \"Hamburg\", \"Deutschland\", \"53.560204\",\"9.960022\");";
 
     //Address for Testuser
     private static final String SQL_INSERT_TABLE_ADDRESS_CUSTOMER_1 = "INSERT INTO " + AddressEntry.TABLE_NAME + " VALUES(7, \"Moltkestraße\", \"30\", \"76133\", \"Karlsruhe\", \"Deutschland\", \"49.015604\",\"8.389408\");";
@@ -188,6 +192,10 @@ public class CityNightsDBHelper extends SQLiteOpenHelper {
     private static final String SQL_INSERT_TABLE_PROPOSAL_5 = "INSERT INTO " + ProposalEntry.TABLE_NAME + " VALUES(5, 1, 5, \"Aurora Hostel Berlin\", \"Hostel\", \"Wir haben die besten Betten!\", 0,0,0,0,0,0,0,0, \"Einzelzimmer\", \"Zimmer für eine Person\", \"19€\", \"Doppelzimmer\", \"Zimmer mit Doppelbett\", \"19€\", \"6 Bett Zimmer\", \"Zimmer mit 6 Personen\", \"19€\");";
     //Sunflower Hostel Berlin
     private static final String SQL_INSERT_TABLE_PROPOSAL_6 = "INSERT INTO " + ProposalEntry.TABLE_NAME + " VALUES(6, 1, 6, \"Sunflower Hostel Berlin\", \"Hostel\", \"Sonnenblume!\", 1,1,0,1,1,0,0,0, \"Einzelzimmer\", \"Zimmer für eine Person\", \"31€\", \"Doppelzimmer\", \"Zimmer mit Doppelbett\", \"26€\", \"6 Bett Zimmer\", \"Zimmer mit 6 Personen\", \"22€\");";
+    //Generator Hostel Hamburg
+    private static final String SQL_INSERT_TABLE_PROPOSAL_7 = "INSERT INTO " + ProposalEntry.TABLE_NAME + " VALUES(7, 1, 8, \"Generator Hostel Hamburg\", \"Hostel\", \"Sonnenblume!\", 1,1,0,1,1,0,0,0, \"Einzelzimmer\", \"Zimmer für eine Person\", \"31€\", \"Doppelzimmer\", \"Zimmer mit Doppelbett\", \"26€\", \"6 Bett Zimmer\", \"Zimmer mit 6 Personen\", \"22€\");";
+    //Superbude St.Pauli Hotel Hostel Lounge
+    private static final String SQL_INSERT_TABLE_PROPOSAL_8 = "INSERT INTO " + ProposalEntry.TABLE_NAME + " VALUES(8, 1, 9, \"Superbude St.Pauli Hotel Hostel Lounge\", \"Hostel\", \"Sonnenblume!\", 1,1,0,1,1,0,0,0, \"Einzelzimmer\", \"Zimmer für eine Person\", \"31€\", \"Doppelzimmer\", \"Zimmer mit Doppelbett\", \"26€\", \"6 Bett Zimmer\", \"Zimmer mit 6 Personen\", \"22€\");";
 
     //CUSTOMER
     private static final String SQL_INSERT_TABLE_CUSTOMER_1 = "INSERT INTO " + CustomerEntry.TABLE_NAME + " VALUES(1, \"Test\", \"test\", \"Max\", \"Mustermann\", \"0123-456789\", \"max@web.de\", 7, 1);";
@@ -212,6 +220,14 @@ public class CityNightsDBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         try {
+            db.execSQL(SQL_DROP_TABLE_ADDRESS);
+            db.execSQL(SQL_DROP_TABLE_CUSTOMER);
+            db.execSQL(SQL_DROP_TABLE_PROVIDER);
+            db.execSQL(SQL_DROP_TABLE_PROVIDER);
+            db.execSQL(SQL_DROP_TABLE_BOOK);
+            db.execSQL(SQL_DROP_TABLE_RATING);
+            db.execSQL(SQL_DROP_TABLE_FAVORITE);
+            db.execSQL(SQL_DROP_TABLE_PROPOSAL);
             Log.d(LOG_TAG, "Die Tabellen werden angelegt.");
             db.execSQL(SQL_CREATE_TABLE_ADDRESS);
             db.execSQL(SQL_CREATE_TABLE_CUSTOMER);
@@ -228,6 +244,8 @@ public class CityNightsDBHelper extends SQLiteOpenHelper {
             db.execSQL(SQL_INSERT_TABLE_ADDRESS_BERLIN_5);
             db.execSQL(SQL_INSERT_TABLE_ADDRESS_BERLIN_6);
             db.execSQL(SQL_INSERT_TABLE_ADDRESS_CUSTOMER_1);
+            db.execSQL(SQL_INSERT_TABLE_ADDRESS_HAMBURG_1);
+            db.execSQL(SQL_INSERT_TABLE_ADDRESS_HAMBURG_2);
             //Proposal
             db.execSQL(SQL_INSERT_TABLE_PROPOSAL_1);
             db.execSQL(SQL_INSERT_TABLE_PROPOSAL_2);
@@ -235,6 +253,8 @@ public class CityNightsDBHelper extends SQLiteOpenHelper {
             db.execSQL(SQL_INSERT_TABLE_PROPOSAL_4);
             db.execSQL(SQL_INSERT_TABLE_PROPOSAL_5);
             db.execSQL(SQL_INSERT_TABLE_PROPOSAL_6);
+            db.execSQL(SQL_INSERT_TABLE_PROPOSAL_7);
+            db.execSQL(SQL_INSERT_TABLE_PROPOSAL_8);
             //Customer
             db.execSQL(SQL_INSERT_TABLE_CUSTOMER_1);
             //Provider

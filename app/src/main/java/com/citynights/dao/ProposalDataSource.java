@@ -8,6 +8,7 @@ import android.util.Log;
 
 import com.citynights.model.Proposal;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +19,10 @@ public class ProposalDataSource {
 
     private static final String LOG_TAG = ProposalDataSource.class.getSimpleName();
 
+    private final String findbycityname =   "Select p.* from " +
+                                            DatabaseSchema.ProposalEntry.TABLE_NAME +
+                                            " p join " + DatabaseSchema.AddressEntry.TABLE_NAME + " a on p." + DatabaseSchema.ProposalEntry.COLUMN_ADDRESS_FK + " = a." + DatabaseSchema.AddressEntry._ID +
+                                            " where a." + DatabaseSchema.AddressEntry.COLUMN_NAME_CITY + " like '%";
     private SQLiteDatabase database;
     private CityNightsDBHelper dbHelper;
 
@@ -144,14 +149,15 @@ public class ProposalDataSource {
         return proposalList;
     }
 
-/*
+
     public List<Proposal> findProposal(String query) {
 
 
         List<Proposal> proposalList = new ArrayList<>();
 
-        Cursor cursor = database.query(DatabaseSchema.ProposalEntry.TABLE_NAME,
-                proposalcolumns, DatabaseSchema.ProposalEntry.COLUMN_NAME_CITY + "=" + query, null, null, null, null);
+        Cursor cursor = database.rawQuery(findbycityname + query + ";", null);
+        //Cursor cursor = database.query(DatabaseSchema.ProposalEntry.TABLE_NAME,
+                //proposalcolumns, DatabaseSchema.ProposalEntry.COLUMN_NAME_CITY + "=" + query, null, null, null, null);
 
 
         cursor.moveToFirst();
@@ -168,5 +174,18 @@ public class ProposalDataSource {
 
         return proposalList;
     }
-    */
+
+    public Cursor searchByInputText(String inputText) {
+
+
+        Cursor cursor = database.rawQuery(findbycityname + inputText + "%';", null);
+
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+        return cursor;
+
+    }
+
+
 }
