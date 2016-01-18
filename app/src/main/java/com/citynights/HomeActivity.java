@@ -70,8 +70,6 @@ public class HomeActivity extends AppCompatActivity
             public void onClick(View view) {
                 Intent in=new Intent(HomeActivity.this,MapsActivity.class);
                 startActivity(in);
-                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                 //       .setAction("Action", null).show();
             }
         });
 
