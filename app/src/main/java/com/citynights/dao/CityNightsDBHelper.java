@@ -96,10 +96,10 @@ public class CityNightsDBHelper extends SQLiteOpenHelper {
                     BookEntry.COLUMN_CUSTOMER_FK + " INTEGER," +
                     BookEntry.COLUMN_PROPOSAL_FK + " INTEGER," +
                     BookEntry.COLUMN_NAME_GUESTS + " INTEGER," +
+                    BookEntry.COLUMN_NAME_PRICE + " DOUBLE, " +
                     BookEntry.COLUMN_NAME_PERIOD_OF_TIME_FROM + " TEXT," +
                     BookEntry.COLUMN_NAME_PERIOD_OF_TIME_TO + " TEXT," +
-                    BookEntry.COLUMN_NAME_PRICE + " DOUBLE, " +
-                    BookEntry.COLUMN_NAME_TIMESTAMP + " TIMESTAMP, " +
+                    BookEntry.COLUMN_NAME_TIMESTAMP + " TEXT, " +
 
                     "FOREIGN KEY(" + BookEntry.COLUMN_CUSTOMER_FK + ") REFERENCES " + CustomerEntry.TABLE_NAME + "(" + CustomerEntry._ID + ")," +
 
@@ -201,6 +201,9 @@ public class CityNightsDBHelper extends SQLiteOpenHelper {
     private static final String SQL_INSERT_TABLE_CUSTOMER_1 = "INSERT INTO " + CustomerEntry.TABLE_NAME + " VALUES(1, \"Test\", \"test\", \"Max\", \"Mustermann\", \"0123-456789\", \"max@web.de\", 7, 1);";
 
 
+    //Book
+    private static final String SQL_INSERT_TABLE_BOOK_1 = "INSERT INTO " + BookEntry.TABLE_NAME + " VALUES(1,1,1,2,49, \"01-02-2016\", \"07-02-2016\", \"18-01-2016\");";
+
     private static final String SQL_DROP_TABLE_CUSTOMER = "DROP TABLE IF EXISTS " + CustomerEntry.TABLE_NAME + ";";
     private static final String SQL_DROP_TABLE_ADDRESS = "DROP TABLE IF EXISTS " + AddressEntry.TABLE_NAME + ";";
     private static final String SQL_DROP_TABLE_PROVIDER = "DROP TABLE IF EXISTS " + ProviderEntry.TABLE_NAME + ";";
@@ -261,6 +264,7 @@ public class CityNightsDBHelper extends SQLiteOpenHelper {
             //Favorite
             //Rating
             //Book
+            db.execSQL(SQL_INSERT_TABLE_BOOK_1);
 
         }
         catch (Exception ex) {

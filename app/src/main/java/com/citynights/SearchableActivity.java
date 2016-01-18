@@ -159,8 +159,13 @@ public class SearchableActivity extends AppCompatActivity implements NavigationV
 
                     // Get the state's capital from this row in the database.
                     String selectedName = cursor.getString(cursor.getColumnIndexOrThrow("name"));
+                    String grandhostel = "Grand Hostel Berlin";
                     Toast.makeText(SearchableActivity.this, selectedName, Toast.LENGTH_SHORT).show();
-                    setContentView(R.layout.detail_berlin_1);
+                    if(grandhostel.equals(selectedName)){
+                        Intent in=new Intent(SearchableActivity.this,DetailActivity.class);
+                        startActivity(in);
+                    }
+
 
                     // Set the default adapter
                     myList.setAdapter(defaultAdapter);
@@ -233,8 +238,7 @@ public class SearchableActivity extends AppCompatActivity implements NavigationV
             startActivity(in);
             // Handle the camera action
         } else if (id == R.id.nav_suche) {
-            Intent in=new Intent(SearchableActivity.this,SearchableActivity.class);
-            startActivity(in);
+
 
         } else if (id == R.id.nav_navigation) {
             Intent in=new Intent(SearchableActivity.this,MapsActivity.class);
@@ -243,7 +247,8 @@ public class SearchableActivity extends AppCompatActivity implements NavigationV
         } else if (id == R.id.nav_konto) {
 
         } else if (id == R.id.nav_bestellungen) {
-
+            Intent in=new Intent(SearchableActivity.this,BookingActivity.class);
+            startActivity(in);
         } else if (id == R.id.nav_favoriten) {
 
         } else if (id == R.id.nav_einstellungen) {

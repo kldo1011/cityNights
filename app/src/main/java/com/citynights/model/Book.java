@@ -17,15 +17,15 @@ public class Book implements Parcelable  {
         TODO Variablentypen anpassen
          */
     private long id;
-    private Customer customer;
-    private Proposal proposal;
-    private int guestnumbers;
+    private Integer customer;
+    private Integer proposal;
+    private Integer guestnumbers;
     private double price;
     private String timefrom;
     private String timeto;
     private String timestamp;
 
-    private Book(Customer customer, Proposal proposal,int guestnumbers, double price,String timefrom, String timeto,String timestamp)
+    public Book(Integer customer, Integer proposal,int guestnumbers, double price,String timefrom, String timeto,String timestamp)
     {
 
         this.customer=customer;
@@ -45,19 +45,19 @@ public class Book implements Parcelable  {
         this.id = id;
     }
 
-    public Customer getCustomer() {
+    public Integer getCustomer() {
         return customer;
     }
 
-    public void setCustomer(Customer customer) {
+    public void setCustomer(Integer customer) {
         this.customer = customer;
     }
 
-    public Proposal getProposal() {
+    public Integer getProposal() {
         return proposal;
     }
 
-    public void setProposal(Proposal proposal) {
+    public void setProposal(Integer proposal) {
         this.proposal = proposal;
     }
 
@@ -134,8 +134,8 @@ public class Book implements Parcelable  {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeLong(id);
-        dest.writeParcelable(customer, flags);
-        dest.writeParcelable(proposal, flags);
+        dest.writeInt(customer);
+        dest.writeInt(proposal);
         dest.writeInt(guestnumbers);
         dest.writeDouble(price);
         dest.writeString(timefrom);
@@ -174,8 +174,8 @@ public class Book implements Parcelable  {
      */
     private Book (Parcel in) {
         id = in.readLong();
-        customer = in.readParcelable(Customer.class.getClassLoader());
-        proposal = in.readParcelable(Proposal.class.getClassLoader());
+        customer = in.readInt();
+        proposal = in.readInt();
         guestnumbers= in.readInt();
         price = in.readDouble();
         timefrom = in.readString();

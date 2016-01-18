@@ -197,7 +197,8 @@ public class HomeActivity extends AppCompatActivity
         } else if (id == R.id.nav_konto) {
 
         } else if (id == R.id.nav_bestellungen) {
-
+            Intent in=new Intent(HomeActivity.this,BookingActivity.class);
+            startActivity(in);
         } else if (id == R.id.nav_favoriten) {
 
         } else if (id == R.id.nav_einstellungen) {
