@@ -2,17 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/nav_konto"
+        android:id="@+id/nav_suche"
         android:orderInCategory="100"
-        android:icon="@drawable/ic_account_circle_black_24dp"
-        android:title="@string/action_konto"
-        app:showAsAction="always"/>
+        android:icon="@drawable/ic_search_black_24dp"
+        android:title="@string/action_suche"
+        app:showAsAction="always" />
     <item
-        android:id="@+id/nav_favoriten"
+        android:id="@+id/nav_navigation"
         android:orderInCategory="100"
-        android:icon="@drawable/ic_bookmark_border_black_24dp"
-        android:title="@string/action_favoriten"
-        app:showAsAction="always"/>
+        android:icon="@drawable/ic_explore_black_24dp"
+        android:title="@string/action_navigation"
+        app:showAsAction="always" />
     <item
         android:id="@+id/nav_einstellungen"
         android:orderInCategory="100"
