@@ -161,10 +161,14 @@ public class HomeActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.nav_konto) {
+        if (id == R.id.nav_suche) {
+            Intent in=new Intent(HomeActivity.this,SearchableActivity.class);
+            startActivity(in);
             return true;
         }
-        if (id == R.id.nav_favoriten) {
+        if (id == R.id.nav_navigation) {
+            Intent in=new Intent(HomeActivity.this,MapsActivity.class);
+            startActivity(in);
             return true;
         }
         if (id == R.id.nav_einstellungen) {
@@ -187,6 +191,8 @@ public class HomeActivity extends AppCompatActivity
             startActivity(in);
 
         } else if (id == R.id.nav_navigation) {
+            Intent in=new Intent(HomeActivity.this,MapsActivity.class);
+            startActivity(in);
 
         } else if (id == R.id.nav_konto) {
 

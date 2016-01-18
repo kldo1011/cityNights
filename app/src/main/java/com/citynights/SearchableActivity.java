@@ -210,7 +210,9 @@ public class SearchableActivity extends AppCompatActivity implements NavigationV
         if (id == R.id.nav_konto) {
             return true;
         }
-        if (id == R.id.nav_favoriten) {
+        if (id == R.id.nav_navigation) {
+            Intent in=new Intent(SearchableActivity.this,MapsActivity.class);
+            startActivity(in);
             return true;
         }
         if (id == R.id.nav_einstellungen) {
@@ -236,6 +238,8 @@ public class SearchableActivity extends AppCompatActivity implements NavigationV
             startActivity(in);
 
         } else if (id == R.id.nav_navigation) {
+            Intent in=new Intent(SearchableActivity.this,MapsActivity.class);
+            startActivity(in);
 
         } else if (id == R.id.nav_konto) {
 

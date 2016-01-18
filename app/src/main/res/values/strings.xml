@@ -38,4 +38,5 @@
     <string name="search_label">Zielort</string>
     <string name="search_hint">Zielort</string>
     <string name="ButtonBook">Buchen</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

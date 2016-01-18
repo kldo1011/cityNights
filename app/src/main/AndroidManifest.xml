@@ -2,13 +2,29 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.citynights">
 
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the 'MyLocation' functionality. 
+    -->
+    <uses-permission android:name="com.vogella.android.locationapi.maps.permission.MAPS_RECEIVE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyAZe2Y2DsT6QHEBKtDq-aQhvLC9SzpbvdI" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
         <activity
             android:name=".HomeActivity"
             android:label="@string/app_name"
@@ -25,21 +41,33 @@
         <activity
             android:name=".SearchableActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
-            </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
         <intent-filter>
             <action android:name="android.intent.action.SEARCH" />
         </intent-filter>
+
         <meta-data
             android:name="android.app.searchable"
             android:resource="@xml/searchable" />
+
         <activity
-                    android:name=".SignUPActivity"
-                    android:label="@string/app_name"
-                    android:theme="@style/AppTheme.NoActionBar">
-                </activity>
+            android:name=".SignUPActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
 
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/. 
+        -->
 
+        <activity
+            android:name=".MapsActivity"
+            android:label="@string/title_activity_maps"></activity>
     </application>
 
 </manifest>
