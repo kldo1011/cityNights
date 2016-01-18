@@ -71,7 +71,6 @@ public class SearchableActivity extends AppCompatActivity implements NavigationV
 
         proposalList = new ArrayList<Proposal>();
 
-
         //relate the listView from java to the one created in xml
         myList = (ListView) findViewById(R.id.list);
 
